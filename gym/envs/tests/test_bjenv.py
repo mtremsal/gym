@@ -4,7 +4,7 @@ import gym
 
 from gym import envs
 from gym.envs.mlady import bjenv
-from gym.envs.mlady.bjenv import eval_hand
+from gym.envs.mlady.bjenv import eval_hand, resolve
 
 import numpy as np
 
@@ -34,8 +34,6 @@ def setup_func():
 
 def eval_hand_test():
     test_decks = setup_func()
-    print test_decks["5"]
-    print eval_hand(test_decks["5"], 1)
     assert eval_hand(test_decks["5"], 1) == (5, "")
     assert eval_hand(test_decks["9"], 1) == (9, "")
     assert eval_hand(test_decks["12"], 1) == (12, "")
@@ -48,3 +46,10 @@ def eval_hand_test():
     assert eval_hand(test_decks["bust with 1 ace"], 1) == (22, "bust")
     assert eval_hand(test_decks["bust with 2 aces"], 1) == (22, "bust")
     assert eval_hand(test_decks["hard 21 with 2 aces"], 1) == (21, "")
+
+def resolve_test():
+    test_decks = setup_func()
+    assert 1.5 in resolve(test_decks["blackjack"])
+    assert -1 in resolve(test_decks["bust"])
+    assert -1 in resolve(test_decks["bust with 1 ace"])
+    assert -1 in resolve(test_decks["bust with 2 aces"])

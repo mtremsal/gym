@@ -43,7 +43,7 @@ def card_value(n):
     elif n%13 == 0:
         return 11
     else:
-        return n%13
+        return n%13 + 1
 
 def generate_deck():
     deck = np.zeros(52)
