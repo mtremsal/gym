@@ -1,5 +1,13 @@
 from gym.envs.registration import registry, register, make, spec
 
+# MLady
+# ----------------------------------------
+register(
+    id='BJ-v0',
+    entry_point='gym.envs.mlady:BJEnv',
+    local_only=True
+)
+
 # Algorithmic
 # ----------------------------------------
 
