@@ -1,4 +1,5 @@
 import logging, sys
+from six import StringIO
 
 import gym
 from gym import spaces
@@ -172,10 +173,15 @@ class BJEnv(gym.Env):
     def _render(self, mode='human', close=False):
         if close:
             return
+
         outfile = StringIO() if mode == 'ansi' else sys.stdout
         outfile.write(board_name(self.observation))
         outfile.write("\n")
         return outfile
+
+        # No need to return anything for human
+        if mode != 'human':
+            return outfile
 
     def _seed(self, seed=None):
         self.np_random, seed = seeding.np_random(seed)
