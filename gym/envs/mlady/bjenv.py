@@ -89,28 +89,28 @@ def resolve(deck):
     p_score, p_qual = eval_hand(deck, 1)
 
     if p_qual == "bust":
-        reward = -1
+        reward = -10
         info = "Player busts"
     elif p_qual == "blackjack" and d_qual == "blackjack":
         reward = 0
         info = "Player pushes"
     elif p_qual == "blackjack":
-        reward = 1.5
+        reward = 15
         info = "Player wins (blackjack)"
     elif d_qual == "blackjack":
-        reward = -1
+        reward = -10
         info = "Player loses (blackjack)"
     elif d_qual == "bust":
-        reward = 1
+        reward = 10
         info = "Player wins"
     elif p_score == d_score:
         reward = 0
         info = "Player pushes"
     elif p_score > d_score:
-        reward = 1
+        reward = 10
         info = "Player wins"
     else:
-        reward = -1
+        reward = -10
         info = "Player loses"
 
     return reward, info
