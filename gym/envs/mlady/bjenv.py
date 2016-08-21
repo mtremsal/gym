@@ -127,7 +127,6 @@ class BJEnv(gym.Env):
         self.observation_space = spaces.Box(-1, 1, 52)
         self._seed()
         self._reset()
-        self.allowed_actions = provide_actions(self.observation, 1)
 
     def _step(self, action):
         assert action in self.action_space
@@ -167,7 +166,7 @@ class BJEnv(gym.Env):
 
     def _reset(self):
         self.observation = generate_deck()
-        self.action_space = [0, 1]
+        self.allowed_actions = provide_actions(self.observation, 1)
         return self.observation
 
     def _render(self, mode='human', close=False):
