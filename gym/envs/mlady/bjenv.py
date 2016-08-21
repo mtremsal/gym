@@ -121,10 +121,10 @@ class BJEnv(gym.Env):
 
     def __init__(self):
         # Stand == 0, Hit == 1. On bust or after initial stand the agent is forced to stand.
-        self.action_space = spaces.Discrete(2)
+        self.action_space = [0,1]
         # 52 cards with 0 == in the deck, 1 == in player's hand and -1 == in dealer's hand
         # self.observation_space = spaces.MultiDiscrete([ [0,3] * 52 ])
-        self.observation_space = spaces.Box(-1, 1, 52)
+        self.observation_space = np.zeros(52)
         self._seed()
         self._reset()
 
